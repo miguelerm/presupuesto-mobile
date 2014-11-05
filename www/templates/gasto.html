@@ -1,0 +1,18 @@
+<ion-view title="Gasto Editar">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <form ng-submit="guardar()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model="vm.nombre">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Guardar</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

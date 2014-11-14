@@ -7,10 +7,18 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Nombre</span>
-          <input type="text" ng-model="vm.nombre">
+          <input type="text" ng-model="vm.producto.nombre">
+        </label>
+		  <label class="item item-input">
+          <span class="input-label">Caracter&iacute;sticas</span>
+          <input type="text" ng-model="vm.producto.caracteristicas">
+        </label>
+		 <label class="item item-input">
+          <span class="input-label">Precio Venta</span>
+          <input type="text" ng-model="vm.producto.precioVenta">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Guardar</button>
+          <button class="button button-block button-positive" type="submit" ng-click="vm.guardar()">Guardar</button>
         </label>
       </div>
     </form>

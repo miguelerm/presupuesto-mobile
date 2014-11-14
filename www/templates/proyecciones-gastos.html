@@ -5,7 +5,7 @@
   <ion-content class="has-header">
     <ion-list>
       <ion-item ng-repeat="proyeccion in vm.proyecciones" href="#/proyecciones/gastos/{{proyeccion.id}}">
-        {{proyeccion.nombre}}
+        {{proyeccion.fecha | date : 'MMMM yyyy'}}
       </ion-item>
     </ion-list>
   </ion-content>

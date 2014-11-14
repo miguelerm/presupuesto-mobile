@@ -1,11 +1,19 @@
 <ion-view title="Gastos">
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    <div class="h1 title">Gastos</div>
+    <a class="button button-balanced icon ion-android-add" href="#/gastos/0"></a>
   </ion-nav-buttons>
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="gasto in vm.gastos" href="#/gastos/{{gasto.id}}">
+      <ion-item class="item item-button-right" ng-repeat="gasto in vm.gastos">
         {{gasto.nombre}}
+        <a class="button button-positive" style="right:70px !important" href="#/gastos/{{gasto.id}}">
+          <i class="icon ion-edit"></i>
+        </a>
+        <button class="button button-assertive" ng-click="vm.eliminar(gasto)">
+          <i class="icon ion-close"></i>
+        </button>
       </ion-item>
     </ion-list>
   </ion-content>

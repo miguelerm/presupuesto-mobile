@@ -7,10 +7,14 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Nombre</span>
-          <input type="text" ng-model="vm.nombre">
+          <input type="text" ng-model="vm.gasto.nombre">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Descripcion</span>
+          <input type="text" ng-model="vm.gasto.descripcion">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Guardar</button>
+          <button class="button button-block button-positive" type="button" ng-click="vm.guardar()">Guardar</button>
         </label>
       </div>
     </form>

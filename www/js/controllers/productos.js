@@ -3,9 +3,31 @@
     angular.module('presupuesto')
         .controller('Productos', Productos);
 
-    function Productos() {
-        this.productos = [{id: 1, nombre: "demox"}];
-        console.log(this.productos[0]);
+    Productos.$inject = ['$http', 'cfg'];
+
+    function Productos($http, cfg) {
+        var vm = this;
+        vm.productos = [];
+
+        function init() {
+            var productosUrl = cfg.apiUrl + '/producto'
+            $http.get(productosUrl)
+                .success(cargarProductos)
+        }
+
+        function cargarProductos(datos) {
+
+            // limpiar los productos
+            vm.productos.splice(0, vm.productos.length);
+
+            // se agregan los productos
+            for (var i = 0; i < datos.length; i++) {
+                item = datos[i];
+                vm.productos.push(item);
+            };
+        }
+
+        init();
     }
 
 })();

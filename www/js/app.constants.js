@@ -2,7 +2,7 @@
 
     angular.module('presupuesto')
         .constant('cfg', {
-            apiUrl: 'http://localhost:52752/api'
+            apiUrl: 'http://umg.azurewebsites.net/api'
         });
 
 })();

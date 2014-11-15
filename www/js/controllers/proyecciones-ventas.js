@@ -3,20 +3,16 @@
     angular.module('presupuesto')
         .controller('ProyeccionesVentas', ProyeccionesVentas);
 
-    function ProyeccionesVentas() {
-        this.proyecciones = [{id: 1, nombre: "demox"}];
-        console.log(this.proyecciones[0]);
-    }
+    ProyeccionesVentas.$inject = ['$http', '$ionicPopup', 'cfg'];
 
-    ProyeccionesVentas.$inject = ['$http', 'cfg'];
+    function ProyeccionesVentas($http, $ionicPopup, cfg) {
 
-    function ProyeccionesVentas($http, cfg) {
-        
         var vm = this;
         vm.proyecciones = [];
-
+        vm.eliminar = eliminar;
+        vm.mesese = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         function init() {
-            var url = cfg.apiUrl + '/proyeccionventa'
+            var url = cfg.apiUrl + '/proyeccionVenta'
             $http.get(url)
                 .success(cargarDatos)
         }
@@ -34,6 +30,43 @@
             };
         }
 
+        function eliminar(proyeccion) {
+            $ionicPopup.confirm({
+                title: 'Eliminar proyeccion',
+                template: '¿ Seguro que desea eliminar la proyeccion ' + proyeccion.id + '?'
+            })
+            .then(function (res) {
+                if (res) {
+                    eliminarProyeccion(proyeccion);
+                }
+            });
+        }
+
+        function eliminarProyeccion(proyeccion) {
+            var proyeccionUrl = cfg.apiUrl + '/proyeccionVenta/' + proyeccion.id;
+            $http.delete(proyeccionUrl)
+                .success(function () {
+                    eliminarDelArray(proyeccion);
+                })
+                .error(mostrarError);
+        }
+
+        function eliminarDelArray(proyeccion) {
+            var index = vm.proyecciones.indexOf(proyeccion);
+            vm.proyecciones.splice(index, 1);
+        }
+
+        function mostrarError(data) {
+            toast('ocurrio un error inesperado al guardar la proyección ' + data.message)
+        }
+
+        function toast(mensaje) {
+            if (window.navigator.simulator || !window.plugins || !window.plugins.toast) {
+                alert(mensaje);
+            } else {
+                window.plugins.toast.showLongBottom(mensaje);
+            }
+        }
         init();
     }
 

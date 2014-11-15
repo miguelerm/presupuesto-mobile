@@ -38,6 +38,15 @@ angular.module('presupuesto', ['ionic'])
         }
       } 
     })
+       .state('app.gastos-proyeccion', {
+           url: "/gastos-proyeccion",
+           views: {
+               'menuContent': {
+                   templateUrl: "templates/gastos-proyeccion.html",
+                   controller: 'Gastos as vm'
+               }
+           }
+       })
 
     .state('app.gastos-editar', {
       url: "/gastos/:id",
@@ -79,6 +88,7 @@ angular.module('presupuesto', ['ionic'])
       }
     })
 
+
     .state('app.proyecciones-ventas', {
       url: "/proyecciones/ventas",
       views: {
@@ -90,7 +100,7 @@ angular.module('presupuesto', ['ionic'])
     })
 
     .state('app.proyecciones-gastos-editar', {
-      url: "/proyecciones/gastos/:id",
+      url: "/proyeccionGasto/:id",
       views: {
         'menuContent' :{
           templateUrl: "templates/proyecciones-gastos-editar.html",
@@ -99,8 +109,18 @@ angular.module('presupuesto', ['ionic'])
       }
     })
 
+         .state('app.ventas-proyeccion', {
+             url: "/ventas-proyeccion",
+             views: {
+                 'menuContent': {
+                     templateUrl: "templates/ventas-proyeccion.html",
+                     controller: 'Productos as vm'
+                 }
+             }
+         })
+
     .state('app.proyecciones-ventas-editar', {
-      url: "/proyecciones/ventas/:id",
+      url: "/proyeccionVenta/:id",
       views: {
         'menuContent' :{
           templateUrl: "templates/proyecciones-ventas-editar.html",
@@ -108,6 +128,8 @@ angular.module('presupuesto', ['ionic'])
         }
       }
     });
+
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/gastos');

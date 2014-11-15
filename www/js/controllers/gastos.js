@@ -59,6 +59,10 @@
             toast('ocurrio un error inesperado al guardar el gasto ' + data.message)
         }
 
+        function mensaje() {
+            toast('Gasto Agregado a la Proyeccion.')
+        }
+
         function toast(mensaje) {
             if (window.navigator.simulator || !window.plugins || !window.plugins.toast) {
                 alert(mensaje);
